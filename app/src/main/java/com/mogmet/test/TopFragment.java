@@ -45,13 +45,8 @@ public class TopFragment extends Fragment implements InputDialogFragment.Listene
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         String listJson = preferences.getString("hoge", "['red']");
         list = gson.fromJson(listJson, ArrayList.class);
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
         adapter.addAll(list);
-//        // アイテムを追加します
-//        adapter.add("red");
-//        adapter.add("green");
-//        adapter.add("blue");
-//        // アダプターを設定します
         listView.setAdapter(adapter);
         return view;
     }
@@ -80,7 +75,7 @@ public class TopFragment extends Fragment implements InputDialogFragment.Listene
     @OnClick(R.id.fab)
     void fabClicked() {
 //        Snackbar.make(container, "なんかいれて", Snackbar.LENGTH_LONG).show();
-        InputDialogFragment.newInstance().show(getActivity().getSupportFragmentManager(), "tekito");
+        InputDialogFragment.newInstance(this).show(getActivity().getSupportFragmentManager(), "tekito");
     }
 
     @OnClick(R.id.custom_list_view_fab)

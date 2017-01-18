@@ -27,13 +27,12 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomViewHolder
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new CustomViewHolder(mInflater.inflate(R.layout.custom_cell, parent, false));
-
     }
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Map<String, String> data = mData.get(position);
-        holder.customButton.setText(data.get("buttonText"));
+        holder.customButton.setText(data.get("buttontext"));
         holder.customThumbnail.setImageResource(R.drawable.btn_normal);
         holder.customTextView.setText(data.get("text"));
     }

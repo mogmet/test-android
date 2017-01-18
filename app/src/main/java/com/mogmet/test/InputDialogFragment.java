@@ -20,9 +20,10 @@ import butterknife.ButterKnife;
 public final class InputDialogFragment extends DialogFragment {
     @BindView(R.id.title_edit_text)
     EditText titleEditText;
-    private Listener listener;
+    static private Listener _listener;
 
-    public static InputDialogFragment newInstance() {
+    public static InputDialogFragment newInstance(Listener listener) {
+        _listener = listener;
         return new InputDialogFragment();
     }
 
@@ -32,15 +33,14 @@ public final class InputDialogFragment extends DialogFragment {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View content = inflater.inflate(R.layout.dialog_input, null);
         ButterKnife.bind(this, content);
-        listener = (Listener) getActivity();
         builder.setView(content);
         builder.setTitle("端末登録");
         builder.setMessage("初回のみ端末登録のために、ログイン情報を入力してください");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (listener != null) {
-                    listener.dialogClicked(titleEditText.getText().toString());
+                if (_listener != null) {
+                    _listener.dialogClicked(titleEditText.getText().toString());
                 }
             }
         });
