@@ -33,7 +33,6 @@ public class CustomListFragment extends Fragment {
         return new CustomListFragment();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
