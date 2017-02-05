@@ -26,4 +26,6 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
+
+    public  onClickItem
 }

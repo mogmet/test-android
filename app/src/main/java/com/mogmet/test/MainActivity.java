@@ -1,25 +1,19 @@
 package com.mogmet.test;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.widget.FrameLayout;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.mogmet.test.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.tool_bar)
-    Toolbar toolBar;
-    @BindView(R.id.activity_main_container)
-    FrameLayout container;
+    private ActivityMainBinding _binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        setSupportActionBar(toolBar);
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setSupportActionBar(_binding.toolBar);
         getSupportActionBar().setTitle("hogehoge");
         initFragment();
     }
