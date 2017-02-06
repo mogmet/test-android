@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by mogmet on 2017/01/02.
@@ -21,11 +22,25 @@ public class CustomViewHolder extends RecyclerView.ViewHolder {
     TextView customTextView;
     @BindView(R.id.custom_button)
     Button customButton;
+    private int mPosition;
+    private CustomViewHolderListener mListener;
 
     public CustomViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    public  onClickItem
+    @OnClick(R.id.custom_button)
+    void onClickCustomButton(View view) {
+        mListener.onClickCustomButton(mPosition);
+    }
+
+    void bindView(int position, CustomViewHolderListener listener) {
+        mPosition = position;
+        mListener = listener;
+    }
+
+    public interface CustomViewHolderListener {
+        void onClickCustomButton(int position);
+    }
 }

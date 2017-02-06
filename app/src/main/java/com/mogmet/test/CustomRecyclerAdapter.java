@@ -17,6 +17,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomViewHolder
     private LayoutInflater mInflater;
     private ArrayList<Map<String, String>> mData;
     private Context mContext;
+    CustomViewHolder.CustomViewHolderListener customViewListener;
 
     public CustomRecyclerAdapter(Context context, ArrayList<Map<String, String>> data) {
         mInflater = LayoutInflater.from(context);
@@ -32,6 +33,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomViewHolder
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Map<String, String> data = mData.get(position);
+        holder.bindView(position, customViewListener);
         holder.customButton.setText(data.get("buttontext"));
         holder.customThumbnail.setImageResource(R.drawable.btn_normal);
         holder.customTextView.setText(data.get("text"));
@@ -44,5 +46,4 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomViewHolder
         }
         return 0;
     }
-
 }

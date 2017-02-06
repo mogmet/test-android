@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -23,7 +24,7 @@ import butterknife.ButterKnife;
  * Created by mogmet on 2017/01/02.
  */
 
-public class CustomListFragment extends Fragment {
+public class CustomListFragment extends Fragment implements CustomViewHolder.CustomViewHolderListener {
     @BindView(R.id.custom_recycler_view)
     RecyclerView customRecyclerView;
     ArrayList<String> list;
@@ -53,7 +54,13 @@ public class CustomListFragment extends Fragment {
             mData.add(map);
         }
         CustomRecyclerAdapter adapter = new CustomRecyclerAdapter(getContext(), mData);
+        adapter.customViewListener = this;
         customRecyclerView.setAdapter(adapter);
         return view;
+    }
+
+    @Override
+    public void onClickCustomButton(int position) {
+        Toast.makeText(getContext(), position + " is touched!", Toast.LENGTH_LONG).show();
     }
 }
